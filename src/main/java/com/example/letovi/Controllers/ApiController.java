@@ -27,12 +27,11 @@ public class ApiController {
 
     }
 
-    public FlightOfferSearch[] flightOfferSearchesWithParameter(String originLocationCode, String destionationLocationCode) throws ResponseException{
+    public FlightOfferSearch[] flightOfferSearchesWithParameter(String originLocationCode, String destinationLocationCode) throws ResponseException{
         return  amadeus.shopping.flightOffersSearch.get(
                 Params.with("originLocationCode", originLocationCode)
-                        .and("destinationLocationCode", destionationLocationCode)
+                        .and("destinationLocationCode", destinationLocationCode)
                         .and("departureDate", "2021-04-01")
-                        .and("returnDate", "2021-04-08")
                         .and("adults", 2)
                         .and("max", 3));
     }

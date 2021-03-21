@@ -12,30 +12,25 @@
     <h2>Avionski letovi</h2>
     <hr>
     <div>
-        <table class="table" style="text-align: center">
-            <tr>
-                <th>#</th>
-                <th>Polazni aerodrom</th>
-                <th>Odredišni aerodrom</th>
-                <th>Datum polaska</th>
-                <th>Datum povratka</th>
-                <th>Broj presjedanja</th>
-                <th>Broj putnika</th>
-                <th>Valuta</th>
-                <th>Ukupna cijena</th>
-            </tr>
-            <tr th:each="flight, iter : ${flights}">
-                <td th:text="${iter.index}"></td>
-                <td th:text="${flight.getDepartureAirport()}"></td>
-                <td th:text="${flight.getDestinationAirport()}"></td>
-                <td th:text="${flight.getDepartureDate()}"></td>
-                <td th:text="${flight.getArrivalDate()}"></td>
-                <td th:text="${flight.getNumberOfStopovers()}"></td>
-                <td th:text="${flight.getNumberOfBookableSeats()}"></td>
-                <td th:text="${flight.getCurrency()}"></td>
-                <td th:text="${flight.getPrice()}"></td>
-            </tr>
-        </table>
+        <form action="#" th:action="@{/flights}" th:object="${flightSearch}" method="post">
+            <div class="input-group input-group-sm mb-3" style="width: 250px;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Polazište:</span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="basic-addon1" th:field="*{departureAirport}">
+            </div>
+            <div class="input-group input-group-sm mb-3" style="width: 250px" ;>
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">Destinacija:</span>
+                </div>
+                <input type="text" class="form-control" aria-describedby="basic-addon2"
+                       th:field="*{destinationAirport}">
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary" value="Submit"/>
+                <input type="reset" value="Reset" class="btn btn-warning"/>
+            </div>
+        </form>
     </div>
 </div>
 
