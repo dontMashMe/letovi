@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Avionski letovi</title>
+        <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    </head>
+<body>
+<div>
+    <h2>Avionski letovi</h2>
+    <hr>
+    <div>
+        <table class="table" style="text-align: center">
+            <tr>
+                <th>#</th>
+                <th>Polazni aerodrom</th>
+                <th>Odredišni aerodrom</th>
+                <th>Datum polaska</th>
+                <th>Datum povratka</th>
+                <th>Broj presjedanja</th>
+                <th>Broj putnika</th>
+                <th>Valuta</th>
+                <th>Ukupna cijena</th>
+            </tr>
+            <tr th:each="flight, iter : ${flights}">
+                <td th:text="${iter.index}"></td>
+                <td th:text="${flight.getDepartureAirport()}"></td>
+                <td th:text="${flight.getDestinationAirport()}"></td>
+                <td th:text="${flight.getDepartureDate()}"></td>
+                <td th:text="${flight.getArrivalDate()}"></td>
+                <td th:text="${flight.getNumberOfStopovers()}"></td>
+                <td th:text="${flight.getNumberOfBookableSeats()}"></td>
+                <td th:text="${flight.getCurrency()}"></td>
+                <td th:text="${flight.getPrice()}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</html>
