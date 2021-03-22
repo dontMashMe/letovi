@@ -1,41 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <head>
-        <meta charset="UTF-8">
-        <title>Avionski letovi</title>
-        <link th:href="@{/styles/style.css}" rel="stylesheet"/>
-        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    </head>
+    <meta charset="UTF-8">
+    <title>Avionski letovi</title>
+    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/styles/js/app.js}" type="text/javascript"></script>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
 <body>
-<div>
-    <h2>Avionski letovi</h2>
+<div id="mainDiv">
+    <div class="row" id="headerRow">
+        <div class="col-8">
+            <h2>Avionski letovi</h2>
+        </div>
+        <div class="col-4">
+            <img th:src="@{/styles/image/plane.png}" alt="plane" src="../static/styles/img/plane.png"/>
+        </div>
+    </div>
     <hr>
     <div>
-        <form action="#" th:action="@{/flights}" th:object="${flightSearch}" method="post">
-            <div class="input-group input-group-sm mb-3" style="width: 250px;">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Polazište:</span>
+        <form action="#" th:action="@{/flights}" th:object="${flightSearch}" method="post" id="flightForm">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group">
+                    <p class="input-group-text" id="basic-addon1">Polazište:</p><span class="required">*</span>
                 </div>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" th:field="*{departureAirport}">
+                <input type="text" class="form-control" aria-describedby="basic-addon1"
+                       th:field="*{departureAirport}" maxlength="3" required>
+                <small>*United States, Spain, United Kingdom, Germany and India</small>
             </div>
-            <div class="input-group input-group-sm mb-3" style="width: 250px" ;>
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon2">Destinacija:</span>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group">
+                    <p class="input-group-text" id="basic-addon2">Destinacija:</p><span class="required">*</span>
                 </div>
                 <input type="text" class="form-control" aria-describedby="basic-addon2"
-                       th:field="*{destinationAirport}">
+                       th:field="*{destinationAirport}" maxlength="3" required>
+                <small>*United States, Spain, United Kingdom, Germany and India</small>
             </div>
-            <div>
-                <input type="submit" class="btn btn-primary" value="Submit"/>
-                <input type="reset" value="Reset" class="btn btn-warning"/>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group">
+                    <p class="input-group-text" id="basic-addon3">Datum polaska:</p><span class="required">*</span>
+                </div>
+                <input type="date" id="departDate" name="trip-start" value="2021-04-01" min="2021-03-22"
+                       max="2022-03-22" th:field="*{departureDate}" required>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group">
+                    <p class="input-group-text" id="basic-addon4">Datum povratka:</p>
+                </div>
+                <input type="date" id="returnDate" name="trip-start" value="2021-04-01" min="2021-03-22"
+                       max="2022-03-22" th:field="*{returnDate}">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group">
+                    <p class="input-group-text" id="basic-addon5">Broj odraslih putnika:</p><span class="required">*</span>
+                </div>
+                <input type="number" class="form-control" aria-describedby="basic-addon1" th:field="*{adult}" required>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <input type="submit" class="btn btn-primary" value="Pretraži" id="submitFormBtn"/>
+                </div>
+                <div class="col-4">
+                    <input type="reset" value="Reset" class="btn btn-warning"/>
+                </div>
+                <div class="col-4" role="status">
+                    <div class="spinner-border">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
+    <hr>
 </div>
 
+
 </body>
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 </html>

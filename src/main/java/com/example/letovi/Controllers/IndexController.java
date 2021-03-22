@@ -1,7 +1,5 @@
 package com.example.letovi.Controllers;
 
-
-import com.amadeus.exceptions.ResponseException;
 import com.example.letovi.models.FlightSearchForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -28,13 +28,23 @@ public class Flight extends FlightOffers {
         this.oneWay = oneWay;
     }
 
-    public int getNumberOfStopovers() {
-        int counter = 0;
-        for (var a : this.itinerary) {
-            counter += a.getSegments().length;
-        }
-        return this.oneWay ? counter - 1 : counter / 2 - 1;
-        //if is one way, itinerary array is half the size.
+
+   /*
+   * Itinerary response array always contains 2 objects.
+   * First one contains flight segments to destination.
+   * Segments array contains x amount of objects which are stopovers the plane takes when going towards destination.
+   * Knowing that, to get the number of stopovers towards the destination all we have to do is return the length of the segments array in first itinerary object.
+   * */
+    public int getNumberOfStopoversFirstPart() {
+        var flightToDestination = this.itinerary[0];
+        return flightToDestination.getSegments().length-1; // - 1 since the length of segments is always at least 1.
+    }
+    /*
+    * Same logic applies here, we just return the length of the segment array in second object of the itinerary array.
+    * */
+    public int getNumberOfStopoversSecondPart(){
+        var flightToDestination = this.itinerary[1];
+        return flightToDestination.getSegments().length-1; // -||-
     }
 
     public double getPrice(){
@@ -62,6 +72,14 @@ public class Flight extends FlightOffers {
         var at = getItinerary()[0].getSegments()[getItinerary()[0].getSegments().length-1].getArrival().getAt();
         String[] atTokens = at.split("T");
         return atTokens[0] + ", " + atTokens[1].substring(0, atTokens[1].length() - 3);
+    }
+
+    public String getReturnDate(){
+        var at = getItinerary()[1].getSegments()[0].getDeparture().getAt();
+        String[] atTokens = at.split("T");
+        return atTokens[0] + ", " + atTokens[1].substring(0, atTokens[1].length() - 3);
+        //second object in response's itineraries array contains info about return flight. 
+        //therefore first object contains the return's flight departure date, so we pluck the 'at' value.
     }
 
     public int getNumberOfBookableSeats() {
