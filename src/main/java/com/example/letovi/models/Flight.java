@@ -2,7 +2,8 @@ package com.example.letovi.models;
 
 
 /*
- * This class is used as a
+ * This class is used as a simpler inheritance class of the Amadeus SDK FlightOffers class, which contains data members that are useful to the app.
+ * It also includes custom getter methods for easier access to nested data.
  *
  * */
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Avionski letovi</title>
+    <link th:href="@{/styles/style.css}" rel="stylesheet"/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div>
+    <div id="mainDiv">
+        <div class="row" id="headerRow">
+            <div class="col-8">
+                <h2>Avionski letovi</h2>
+            </div>
+            <div class="col-4">
+                <img th:src="@{/styles/image/plane.png}" alt="plane" src="../static/styles/img/plane.png"/>
+            </div>
+        </div>
+        <hr>
+        <table class="table" style="text-align: center">
+            <tr>
+                <th>#</th>
+                <th>Polazni aerodrom</th>
+                <th>Odredišni aerodrom</th>
+                <th>Datum polaska</th>
+                <th>Presjedanja na polasku</th>
+                <th>Datum povratka</th>
+                <th>Presjedanja na povratku</th>
+                <th>Broj dostupnih sjedala</th>
+                <th>Valuta</th>
+                <th>Ukupna cijena</th>
+            </tr>
+            <tr th:each="flight, iter : ${storedFlights}">
+                <td th:text="${iter.index+1}"></td>
+                <td th:text="${flight.getDepartureAirport()}"></td>
+                <td th:text="${flight.getDestinationAirport()}"></td>
+                <td th:text="${flight.getDepartureDate()}"></td>
+                <td th:text="${flight.getStopoverFirstPart()}"></td>
+                <td th:text="${flight.getReturnDate()}"></td>
+                <td th:text="${flight.getStopoverSecondPart()}"></td>
+                <td th:text="${flight.getBookableSeats()}"></td>
+                <td th:text="${flight.getCurrency()}"></td>
+                <td th:text="${flight.getPrice()}"></td>
+            </tr>
+
+        </table>
+        <a th:href="@{/}">
+            <button type="button" class="btn btn-success">Povratak na pretragu</button>
+        </a>
+    </div>
+</div>
+
+</body>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</html>

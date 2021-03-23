@@ -25,6 +25,9 @@ small{
     color:red;
     margin-left: 2px;
 }
+#rightCol{
+    border-left: 0.5px solid rgb(0,123,255);
+}
 @keyframes spinner-border {
     to { transform: rotate(360deg); }
 }
